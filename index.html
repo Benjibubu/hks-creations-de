@@ -57,31 +57,27 @@
     }
 
     .nav-logo {
-      display: flex; align-items: center; gap: 10px;
+      display: flex; align-items: center; gap: 12px;
       text-decoration: none; flex-shrink: 0;
       transition: transform 0.3s ease;
     }
     .nav-logo:hover { transform: scale(1.03); }
 
-    .nav-logo-mark svg {
-      display: block;
-      filter: drop-shadow(0 0 8px rgba(0,212,255,0.5)) drop-shadow(0 0 18px rgba(168,85,247,0.3));
+    .nav-logo-img {
+      display: block; height: 44px; width: auto;
+      filter: drop-shadow(0 0 10px rgba(0,212,255,0.45)) drop-shadow(0 0 22px rgba(168,85,247,0.28));
       transition: filter 0.35s ease;
     }
-    .nav-logo:hover .nav-logo-mark svg {
-      filter: drop-shadow(0 0 12px rgba(0,212,255,0.8)) drop-shadow(0 0 28px rgba(168,85,247,0.5));
+    .nav-logo:hover .nav-logo-img {
+      filter: drop-shadow(0 0 14px rgba(0,212,255,0.75)) drop-shadow(0 0 32px rgba(168,85,247,0.5));
     }
-
-    .nav-logo-text { display: flex; flex-direction: column; line-height: 1; gap: 1px; }
-    .nav-logo-hks {
-      font-family: 'Syne', sans-serif; font-weight: 800; font-size: 17px;
-      background: linear-gradient(135deg, #00D4FF 0%, #A855F7 60%, #EC4899 100%);
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-      letter-spacing: 0.04em;
+    .nav-logo-divider {
+      width: 1px; height: 26px; background: rgba(255,255,255,0.22);
+      flex-shrink: 0;
     }
-    .nav-logo-creations {
-      font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 10px;
-      color: rgba(255,255,255,0.45); letter-spacing: 0.12em; text-transform: uppercase;
+    .nav-logo-wordmark {
+      font-family: 'Syne', sans-serif; font-weight: 700; font-size: 18px;
+      color: #ffffff; letter-spacing: 0.02em; white-space: nowrap;
     }
 
     .nav-links {
@@ -936,6 +932,72 @@
     }
     .pricing-card.featured { animation: featuredGlow 8s ease-in-out infinite; }
 
+    /* ─── Websites Section ───────────────────────── */
+    .websites-section {
+      position: relative; z-index: 1;
+      background: #06060a;
+      padding: clamp(80px, 10vw, 140px) clamp(24px, 8vw, 120px);
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .websites-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+    .website-card {
+      border-radius: 16px; overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: #0d0d12;
+      transition: border-color 0.3s, transform 0.3s;
+      display: flex; flex-direction: column;
+    }
+    .website-card:hover { border-color: rgba(255,255,255,0.18); transform: translateY(-4px); }
+    .website-iframe-wrap {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16/10;
+      overflow: hidden;
+      background: #0a0a10;
+      cursor: default;
+    }
+    .website-preview-img {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: top center;
+      display: block;
+    }
+    .website-iframe-wrap iframe {
+      position: absolute;
+      top: 0; left: 0;
+      width: 1440px;
+      height: 900px;
+      border: none;
+      transform-origin: top left;
+      pointer-events: none;
+      transform: scale(0.267);
+    }
+    .website-card-footer {
+      padding: 18px 22px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      flex: 1;
+    }
+    .website-visit-btn {
+      display: inline-flex; align-items: center; gap: 7px;
+      font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500;
+      color: #00D4FF; text-decoration: none; width: fit-content;
+      transition: gap 0.2s ease, color 0.2s;
+      border: 1px solid rgba(0,212,255,0.25);
+      padding: 7px 14px; border-radius: 8px;
+      background: rgba(0,212,255,0.06);
+    }
+    .website-visit-btn:hover { gap: 11px; color: #fff; border-color: rgba(0,212,255,0.5); background: rgba(0,212,255,0.1); }
+    .website-visit-btn svg { width: 14px; height: 14px; flex-shrink: 0; }
+    @media (max-width: 900px) {
+      .websites-grid { grid-template-columns: 1fr; }
+    }
+
     /* ─── Contact ────────────────────────────────── */
     .contact-section {
       position: relative; z-index: 1;
@@ -1076,6 +1138,83 @@
       .footer-nav { justify-content: flex-start; }
       .footer-copy { align-self: flex-start; }
     }
+    .footer-legal {
+      display: flex; flex-wrap: wrap; gap: 18px;
+      justify-content: center; margin-top: 14px;
+    }
+    .footer-legal a {
+      font-family: 'DM Sans', sans-serif; font-size: 12px;
+      color: rgba(255,255,255,0.32); text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-legal a:hover { color: rgba(255,255,255,0.85); }
+
+    /* ─── Legal Modals ───────────────────────────── */
+    .legal-modal {
+      position: fixed; inset: 0; z-index: 500;
+      background: rgba(0,0,0,0.78);
+      backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+      display: none; align-items: flex-start; justify-content: center;
+      padding: clamp(20px,5vh,60px) 16px;
+      overflow-y: auto;
+    }
+    .legal-modal.is-open { display: flex; animation: legalFade 0.25s ease both; }
+    body.legal-open { overflow: hidden; }
+    @keyframes legalFade { from { opacity: 0; } to { opacity: 1; } }
+    .legal-backdrop {
+      position: absolute; inset: 0; cursor: pointer; z-index: 0;
+    }
+    .legal-content {
+      position: relative; z-index: 1;
+      width: 100%; max-width: 760px;
+      background: linear-gradient(180deg, rgba(15,15,22,0.98), rgba(8,8,14,0.98));
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 18px;
+      padding: clamp(28px,4vw,48px);
+      color: rgba(255,255,255,0.78);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px; line-height: 1.65;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(168,85,247,0.08);
+    }
+    .legal-content h2 {
+      font-family: 'Syne', sans-serif; font-weight: 800;
+      font-size: clamp(24px, 3vw, 32px); color: #fff;
+      margin: 0 0 22px; letter-spacing: -0.01em;
+      background: linear-gradient(135deg, #00D4FF 0%, #A855F7 60%, #EC4899 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .legal-content h3 {
+      font-family: 'Syne', sans-serif; font-weight: 700;
+      font-size: 17px; color: #fff;
+      margin: 26px 0 8px;
+    }
+    .legal-content p { margin: 0 0 12px; }
+    .legal-content ul { margin: 0 0 12px; padding-left: 20px; }
+    .legal-content li { margin-bottom: 6px; }
+    .legal-content a { color: #00D4FF; text-decoration: none; }
+    .legal-content a:hover { text-decoration: underline; }
+    .legal-content strong { color: #fff; }
+    .legal-close {
+      position: absolute; top: 14px; right: 16px;
+      width: 36px; height: 36px; border-radius: 50%;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: rgba(255,255,255,0.7);
+      display: flex; align-items: center; justify-content: center;
+      text-decoration: none; font-size: 18px; line-height: 1;
+      transition: all 0.2s;
+    }
+    .legal-close:hover {
+      background: rgba(255,255,255,0.12); color: #fff;
+      transform: rotate(90deg);
+    }
+    .legal-disclaimer {
+      margin-top: 24px; padding: 14px 16px;
+      background: rgba(236,72,153,0.08);
+      border: 1px solid rgba(236,72,153,0.25);
+      border-radius: 10px;
+      font-size: 12.5px; color: rgba(255,255,255,0.7);
+    }
 
     /* ─── Back to top ────────────────────────────── */
     .back-to-top {
@@ -1177,7 +1316,7 @@
       font-size: 11px; font-weight: 700; color: #000; flex-shrink: 0;
     }
     .about-founder-avatar.ben { background: linear-gradient(135deg, #00D4FF, #A855F7); }
-    .about-founder-avatar.diego { background: linear-gradient(135deg, #A855F7, #EC4899); }
+    .about-founder-avatar.max { background: linear-gradient(135deg, #A855F7, #EC4899); }
     .about-founder-info { display: flex; flex-direction: column; }
     .about-founder-name {
       font-family: 'DM Sans', sans-serif; font-size: 12px;
@@ -1303,33 +1442,15 @@
   <!-- Navigation -->
   <nav class="nav">
     <a href="#home" class="nav-logo">
-      <div class="nav-logo-mark">
-        <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="lg1" x1="0" y1="0" x2="36" y2="36" gradientUnits="userSpaceOnUse">
-              <stop offset="0%" stop-color="#00D4FF"/>
-              <stop offset="50%" stop-color="#A855F7"/>
-              <stop offset="100%" stop-color="#EC4899"/>
-            </linearGradient>
-            <filter id="glow"><feGaussianBlur stdDeviation="1.5" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-          </defs>
-          <!-- Star / bolt shape -->
-          <polygon points="18,2 22,14 34,14 24,22 28,34 18,26 8,34 12,22 2,14 14,14" fill="url(#lg1)" opacity="0.15"/>
-          <polygon points="18,2 22,14 34,14 24,22 28,34 18,26 8,34 12,22 2,14 14,14" fill="none" stroke="url(#lg1)" stroke-width="1.5" filter="url(#glow)"/>
-          <!-- Globe icon in center -->
-          <circle cx="18" cy="18" r="6" fill="none" stroke="url(#lg1)" stroke-width="1.2"/>
-          <ellipse cx="18" cy="18" rx="3" ry="6" fill="none" stroke="url(#lg1)" stroke-width="1"/>
-          <line x1="12" y1="18" x2="24" y2="18" stroke="url(#lg1)" stroke-width="1"/>
-        </svg>
-      </div>
-      <div class="nav-logo-text">
-        <span class="nav-logo-hks">HKS</span><span class="nav-logo-creations">Creations</span>
-      </div>
+      <img src="./logo.png" alt="HKS Creations" class="nav-logo-img">
+      <span class="nav-logo-divider"></span>
+      <span class="nav-logo-wordmark">HKS Creations</span>
     </a>
     <ul class="nav-links">
       <li><a href="#home">Home</a></li>
       <li><a href="#about">Über uns</a></li>
       <li><a href="#offer">Angebot</a></li>
+      <li><a href="#websites">Meine Websites</a></li>
       <li><a href="#how">Ablauf</a></li>
       <li><a href="#faq">FAQ</a></li>
     </ul>
@@ -1343,6 +1464,7 @@
     <a href="#home">Home</a>
     <a href="#about">Über uns</a>
     <a href="#offer">Angebot</a>
+    <a href="#websites">Meine Websites</a>
     <a href="#how">Ablauf</a>
     <a href="#faq">FAQ</a>
     <a href="#contact" class="nav-cta">Kontakt</a>
@@ -1390,10 +1512,10 @@
             </div>
           </div>
           <div class="about-founder-pill">
-            <div class="about-founder-avatar diego">D</div>
+            <div class="about-founder-avatar max">M</div>
             <div class="about-founder-info">
-              <span class="about-founder-name">Diego Krotosz Sereno</span>
-              <span class="about-founder-role">Mitgründer</span>
+              <span class="about-founder-name">Maximilian Hammen</span>
+              <span class="about-founder-role">Geschäftsführung &amp; Recht</span>
             </div>
           </div>
         </div>
@@ -1734,6 +1856,103 @@
       </div>
     </section>
 
+    <!-- Meine Websites -->
+    <section class="websites-section" id="websites">
+      <div class="offer-header">
+        <p class="offer-label">Unsere Arbeit</p>
+        <h2 class="offer-h2">Meine Websites.</h2>
+        <p class="offer-sub">Echte Projekte, echte Ergebnisse. Jede Website ist handgecoded – kein Template, kein Baukastendingens, kein Overhead.</p>
+      </div>
+
+      <div class="websites-grid">
+
+        <!-- RHS Immobilien -->
+        <div class="website-card">
+          <div class="browser-chrome">
+            <div class="browser-dots"><span></span><span></span><span></span></div>
+            <div class="browser-url">rhs-immobilien.vercel.app</div>
+          </div>
+          <div class="website-iframe-wrap">
+            <iframe src="https://rhs-immobilien.vercel.app" scrolling="no" loading="lazy" title="RHS Immobilien" tabindex="-1"></iframe>
+          </div>
+          <div class="website-card-footer">
+            <div>
+              <div class="card-style-label">RHS Immobilien</div>
+              <div class="card-style-desc">Premium-Immobilienberatung – klare Struktur, starkes Vertrauen, moderner Auftritt.</div>
+            </div>
+            <a href="https://rhs-immobilien.vercel.app" target="_blank" rel="noopener" class="website-visit-btn">
+              Website besuchen
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Küchenfuchs -->
+        <div class="website-card">
+          <div class="browser-chrome">
+            <div class="browser-dots"><span></span><span></span><span></span></div>
+            <div class="browser-url">kuechenfuchs.vercel.app</div>
+          </div>
+          <div class="website-iframe-wrap">
+            <iframe src="https://kuechenfuchs.vercel.app" scrolling="no" loading="lazy" title="Küchenfuchs" tabindex="-1"></iframe>
+          </div>
+          <div class="website-card-footer">
+            <div>
+              <div class="card-style-label">Küchenfuchs</div>
+              <div class="card-style-desc">Küchen &amp; Einrichtung – warm, einladend, mit echtem Charakter.</div>
+            </div>
+            <a href="https://kuechenfuchs.vercel.app" target="_blank" rel="noopener" class="website-visit-btn">
+              Website besuchen
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Mental Fanty -->
+        <div class="website-card">
+          <div class="browser-chrome">
+            <div class="browser-dots"><span></span><span></span><span></span></div>
+            <div class="browser-url">mental-fanty.vercel.app</div>
+          </div>
+          <div class="website-iframe-wrap">
+            <img src="./mental-fanty-preview.png" alt="Mental Fanty Vorschau" class="website-preview-img" loading="lazy">
+          </div>
+          <div class="website-card-footer">
+            <div>
+              <div class="card-style-label">Mental Fanty</div>
+              <div class="card-style-desc">Spirituelle Begleitung für Transformation, inneres Wachstum &amp; Klarheit.</div>
+            </div>
+            <a href="https://mental-fanty.vercel.app" target="_blank" rel="noopener" class="website-visit-btn">
+              Website besuchen
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Systemcut Koblenz -->
+        <div class="website-card">
+          <div class="browser-chrome">
+            <div class="browser-dots"><span></span><span></span><span></span></div>
+            <div class="browser-url">systemcut-koblenz.vercel.app</div>
+          </div>
+          <div class="website-iframe-wrap">
+            <iframe src="https://systemcut-koblenz.vercel.app" scrolling="no" loading="lazy" title="Systemcut Koblenz" tabindex="-1"></iframe>
+          </div>
+          <div class="website-card-footer">
+            <div>
+              <div class="card-style-label">Systemcut Koblenz</div>
+              <div class="card-style-desc">Barbershop &amp; Friseur – frischer Look, starke Onlinepräsenz.</div>
+            </div>
+            <a href="https://systemcut-koblenz.vercel.app" target="_blank" rel="noopener" class="website-visit-btn">
+              Website besuchen
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
     <!-- Contact -->
     <section class="contact-section" id="contact">
       <div class="contact-inner">
@@ -1745,7 +1964,7 @@
           <span>Aktuell offen für neue Projekte</span>
         </div>
         <div class="contact-cards">
-          <a href="tel:+4917384970006" class="contact-card">
+          <a href="tel:+491738497006" class="contact-card">
             <span class="contact-card-icon">📞</span>
             <div class="contact-card-info">
               <span class="contact-card-text">+49 173 8497006</span>
@@ -1753,18 +1972,10 @@
             </div>
             <span class="contact-card-arrow">→</span>
           </a>
-          <a href="tel:+4915906458011" class="contact-card">
-            <span class="contact-card-icon">📞</span>
-            <div class="contact-card-info">
-              <span class="contact-card-text">+49 159 06458011</span>
-              <span class="contact-card-name">Diego Krotosz Sereno · Mitgründer</span>
-            </div>
-            <span class="contact-card-arrow">→</span>
-          </a>
-          <a href="mailto:hks.creations@web.de" class="contact-card">
+          <a href="mailto:hks.creationss@gmail.com" class="contact-card">
             <span class="contact-card-icon">✉️</span>
             <div class="contact-card-info">
-              <span class="contact-card-text">hks.creations@web.de</span>
+              <span class="contact-card-text">hks.creationss@gmail.com</span>
               <span class="contact-card-name">Geschäftliche E-Mail</span>
             </div>
             <span class="contact-card-arrow">→</span>
@@ -1775,7 +1986,7 @@
           <div class="contact-trust-item"><span>🔒</span><span>Zahlen erst bei Zufriedenheit</span></div>
           <div class="contact-trust-item"><span>🤝</span><span>Persönlich &amp; direkt</span></div>
         </div>
-        <a href="mailto:hks.creations@web.de" class="cta-colorful">
+        <a href="mailto:hks.creationss@gmail.com" class="cta-colorful">
           <span class="cta-text">Kostenlos Kontakt aufnehmen →</span>
         </a>
       </div>
@@ -1789,6 +2000,7 @@
       <nav class="footer-nav">
         <a href="#home">Home</a>
         <a href="#offer">Angebot</a>
+        <a href="#websites">Meine Websites</a>
         <a href="#how">Ablauf</a>
         <a href="#faq">FAQ</a>
         <a href="#contact">Kontakt</a>
@@ -1797,7 +2009,134 @@
     </div>
     <p class="footer-tagline">Zwei Menschen. Echter Code. Faire Preise.</p>
     <p class="footer-manifesto">Keine aufgeblähten Agenturen. Echte Websites, wirklich schnell, für echte Menschen.</p>
+    <div class="footer-legal">
+      <a href="#legal-impressum">Impressum</a>
+      <a href="#legal-datenschutz">Datenschutz</a>
+      <a href="#legal-agb">AGB</a>
+      <a href="#legal-haftung">Haftungsausschluss</a>
+    </div>
   </footer>
+
+  <!-- Legal Modals -->
+  <div class="legal-modal" id="legal-impressum" role="dialog" aria-modal="true" aria-labelledby="legal-impressum-title">
+    <a href="#" class="legal-backdrop" aria-label="Schließen"></a>
+    <div class="legal-content">
+      <a href="#" class="legal-close" aria-label="Schließen">×</a>
+      <h2 id="legal-impressum-title">Impressum</h2>
+      <p><strong>Angaben gemäß § 5 TMG:</strong></p>
+      <p>Maximilian Hammen<br>Heinestraße 23<br>55430 Urbar</p>
+      <h3>Kontakt</h3>
+      <p>Telefon: 06741 9805456<br>E-Mail: <a href="mailto:hks.creations@web.de">hks.creations@web.de</a></p>
+      <h3>Umsatzsteuer</h3>
+      <p>Kleinunternehmer gemäß § 19 UStG. Es wird keine Umsatzsteuer ausgewiesen.</p>
+      <h3>Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV</h3>
+      <p>Maximilian Hammen<br>Heinestraße 23<br>55430 Urbar</p>
+      <h3>Streitschlichtung</h3>
+      <p>Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit: <a href="https://ec.europa.eu/consumers/odr/" target="_blank" rel="noopener">https://ec.europa.eu/consumers/odr/</a></p>
+      <p>Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>
+    </div>
+  </div>
+
+  <div class="legal-modal" id="legal-datenschutz" role="dialog" aria-modal="true" aria-labelledby="legal-datenschutz-title">
+    <a href="#" class="legal-backdrop" aria-label="Schließen"></a>
+    <div class="legal-content">
+      <a href="#" class="legal-close" aria-label="Schließen">×</a>
+      <h2 id="legal-datenschutz-title">Datenschutzerklärung</h2>
+
+      <h3>1. Datenschutz auf einen Blick</h3>
+      <p><strong>Allgemeine Hinweise</strong><br>Die folgenden Hinweise geben einen einfachen Überblick darüber, was mit deinen personenbezogenen Daten passiert, wenn du diese Website besuchst. Personenbezogene Daten sind alle Daten, mit denen du persönlich identifiziert werden kannst.</p>
+      <p><strong>Datenerfassung auf dieser Website</strong><br>Die Datenverarbeitung auf dieser Website erfolgt durch den Websitebetreiber. Dessen Kontaktdaten findest du im Impressum dieser Website. Deine Daten werden zum einen dadurch erhoben, dass du uns diese mitteilst – z.B. per E-Mail oder Telefon. Andere Daten werden automatisch beim Besuch der Website durch unsere IT-Systeme erfasst (z.B. Internetbrowser, Betriebssystem, Uhrzeit des Seitenaufrufs).</p>
+      <p>Du hast jederzeit das Recht, unentgeltlich Auskunft über Herkunft, Empfänger und Zweck deiner gespeicherten personenbezogenen Daten zu erhalten. Du hast außerdem ein Recht, die Berichtigung oder Löschung dieser Daten zu verlangen.</p>
+
+      <h3>2. Hosting</h3>
+      <p>Wir hosten unsere Website bei Vercel. Anbieter ist Vercel Inc., 340 S Lemon Ave #4133, Walnut, CA 91789, USA („Vercel"). Wenn du unsere Website besuchst, erfasst Vercel verschiedene Logfiles inklusive deiner IP-Adressen. Details: <a href="https://vercel.com/legal/privacy-policy" target="_blank" rel="noopener">vercel.com/legal/privacy-policy</a>.</p>
+      <p>Die Verwendung von Vercel erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO. Wir haben ein berechtigtes Interesse an einer möglichst zuverlässigen Darstellung unserer Website. Es besteht ein Vertrag über Auftragsverarbeitung (AVV).</p>
+
+      <h3>3. Allgemeine Hinweise und Pflichtinformationen</h3>
+      <p><strong>Verantwortliche Stelle:</strong><br>Maximilian Hammen<br>Heinestraße 23<br>55430 Urbar<br>Telefon: 06741 9805456<br>E-Mail: <a href="mailto:hks.creations@web.de">hks.creations@web.de</a></p>
+      <p><strong>Speicherdauer:</strong> Soweit innerhalb dieser Datenschutzerklärung keine speziellere Speicherdauer genannt wurde, verbleiben deine personenbezogenen Daten bei uns, bis der Zweck für die Datenverarbeitung entfällt.</p>
+      <p><strong>Widerruf:</strong> Viele Datenverarbeitungsvorgänge sind nur mit deiner ausdrücklichen Einwilligung möglich. Du kannst eine bereits erteilte Einwilligung jederzeit widerrufen.</p>
+      <p><strong>Beschwerderecht:</strong> Im Falle von Verstößen gegen die DSGVO steht den Betroffenen ein Beschwerderecht bei einer Aufsichtsbehörde zu.</p>
+      <p><strong>Recht auf Datenübertragbarkeit:</strong> Du hast das Recht, Daten in einem gängigen, maschinenlesbaren Format aushändigen zu lassen.</p>
+      <p><strong>Auskunft, Löschung und Berichtigung:</strong> Du hast jederzeit das Recht auf unentgeltliche Auskunft über deine gespeicherten personenbezogenen Daten und ggf. ein Recht auf Berichtigung oder Löschung.</p>
+
+      <h3>4. Datenerfassung auf dieser Website</h3>
+      <p><strong>Server-Log-Dateien:</strong> Der Provider erhebt und speichert automatisch Informationen, die dein Browser übermittelt: Browsertyp und -version, Betriebssystem, Referrer URL, Hostname, Uhrzeit der Serveranfrage, IP-Adresse. Eine Zusammenführung mit anderen Datenquellen erfolgt nicht. Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO.</p>
+      <p><strong>Anfrage per E-Mail oder Telefon:</strong> Wenn du uns kontaktierst, wird deine Anfrage inklusive aller daraus hervorgehenden personenbezogenen Daten zum Zwecke der Bearbeitung gespeichert und verarbeitet. Diese Daten geben wir nicht ohne deine Einwilligung weiter.</p>
+
+      <h3>5. Schriftarten</h3>
+      <p>Diese Website nutzt zur einheitlichen Darstellung von Schriftarten lokal gehostete Schriftdateien. Es findet keine Verbindung zu Servern Dritter (z.B. Google) statt. Deine Daten werden somit beim Besuch dieser Website nicht an Dritte übertragen.</p>
+    </div>
+  </div>
+
+  <div class="legal-modal" id="legal-haftung" role="dialog" aria-modal="true" aria-labelledby="legal-haftung-title">
+    <a href="#" class="legal-backdrop" aria-label="Schließen"></a>
+    <div class="legal-content">
+      <a href="#" class="legal-close" aria-label="Schließen">×</a>
+      <h2 id="legal-haftung-title">Haftungsausschluss</h2>
+      <h3>Haftung für Inhalte</h3>
+      <p>Die Inhalte unserer Seiten wurden mit größter Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte können wir jedoch keine Gewähr übernehmen. Als Diensteanbieter sind wir gemäß § 7 Abs. 1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen.</p>
+      <p>Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen nach den allgemeinen Gesetzen bleiben hiervon unberührt. Eine diesbezügliche Haftung ist jedoch erst ab dem Zeitpunkt der Kenntnis einer konkreten Rechtsverletzung möglich. Bei Bekanntwerden von entsprechenden Rechtsverletzungen werden wir diese Inhalte umgehend entfernen.</p>
+      <h3>Haftung für Links</h3>
+      <p>Unser Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich. Die verlinkten Seiten wurden zum Zeitpunkt der Verlinkung auf mögliche Rechtsverstöße überprüft. Rechtswidrige Inhalte waren zum Zeitpunkt der Verlinkung nicht erkennbar.</p>
+      <p>Eine permanente inhaltliche Kontrolle der verlinkten Seiten ist jedoch ohne konkrete Anhaltspunkte einer Rechtsverletzung nicht zumutbar. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Links umgehend entfernen.</p>
+      <h3>Urheberrecht</h3>
+      <p>Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers. Downloads und Kopien dieser Seite sind nur für den privaten, nicht kommerziellen Gebrauch gestattet.</p>
+      <p>Soweit die Inhalte auf dieser Seite nicht vom Betreiber erstellt wurden, werden die Urheberrechte Dritter beachtet. Sollte dir trotzdem eine Urheberrechtsverletzung auffallen, bitten wir um einen entsprechenden Hinweis. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Inhalte umgehend entfernen.</p>
+    </div>
+  </div>
+
+  <div class="legal-modal" id="legal-agb" role="dialog" aria-modal="true" aria-labelledby="legal-agb-title">
+    <a href="#" class="legal-backdrop" aria-label="Schließen"></a>
+    <div class="legal-content">
+      <a href="#" class="legal-close" aria-label="Schließen">×</a>
+      <h2 id="legal-agb-title">Allgemeine Geschäftsbedingungen</h2>
+
+      <h3>§ 1 Geltungsbereich</h3>
+      <p>(1) Diese Allgemeinen Geschäftsbedingungen (nachfolgend „AGB") gelten für sämtliche Verträge zwischen Maximilian Hammen, Heinestraße 23, 55430 Urbar (nachfolgend „HKS Creations") und dem Auftraggeber über die Konzeption, Gestaltung, Programmierung und Bereitstellung von Websites sowie damit verbundene Dienstleistungen.</p>
+      <p>(2) Abweichende Bedingungen des Auftraggebers werden nicht anerkannt, es sei denn, ihrer Geltung wird ausdrücklich schriftlich zugestimmt.</p>
+
+      <h3>§ 2 Vertragsgegenstand</h3>
+      <p>(1) Gegenstand des Vertrages ist die im jeweiligen Angebot bzw. in der Auftragsbestätigung beschriebene Leistung (z.B. Webdesign, Frontend-Entwicklung, Domain- und Hostingvermittlung, Wartung).</p>
+      <p>(2) Maßgeblich für den Leistungsumfang ist das schriftliche Angebot oder die schriftliche Auftragsbestätigung.</p>
+
+      <h3>§ 3 Preise und Zahlungsbedingungen</h3>
+      <p>(1) Es gelten die im Angebot ausgewiesenen Preise. HKS Creations ist Kleinunternehmer im Sinne von § 19 UStG, daher wird keine Umsatzsteuer ausgewiesen.</p>
+      <p>(2) Sofern nicht anders vereinbart, sind 50 % des Auftragswertes bei Auftragserteilung, der Restbetrag bei Abnahme zur Zahlung fällig.</p>
+      <p>(3) Rechnungen sind innerhalb von 14 Tagen nach Rechnungsstellung ohne Abzug zu zahlen.</p>
+
+      <h3>§ 4 Mitwirkungspflichten des Auftraggebers</h3>
+      <p>(1) Der Auftraggeber stellt alle für die Auftragsausführung erforderlichen Materialien (Texte, Bilder, Logos, Zugangsdaten) rechtzeitig und in nutzbarer Form bereit.</p>
+      <p>(2) Der Auftraggeber versichert, dass er an allen übergebenen Materialien die erforderlichen Nutzungs- und Verwertungsrechte besitzt und dass diese keine Rechte Dritter verletzen.</p>
+      <p>(3) Verzögerungen, die auf fehlende Mitwirkung des Auftraggebers zurückzuführen sind, verlängern vereinbarte Liefertermine entsprechend.</p>
+
+      <h3>§ 5 Lieferung und Abnahme</h3>
+      <p>(1) Lieferzeiten sind nur dann verbindlich, wenn sie ausdrücklich schriftlich zugesagt wurden.</p>
+      <p>(2) Nach Fertigstellung der Leistung erfolgt die Abnahme durch den Auftraggeber. Erfolgt innerhalb von 14 Tagen nach Bereitstellung keine schriftliche Mängelrüge, gilt die Leistung als abgenommen.</p>
+
+      <h3>§ 6 Urheber- und Nutzungsrechte</h3>
+      <p>(1) HKS Creations überträgt dem Auftraggeber mit vollständiger Zahlung das einfache, zeitlich und räumlich unbeschränkte Nutzungsrecht an den vertraglich vereinbarten Leistungen.</p>
+      <p>(2) Das Recht zur Bearbeitung, Weitergabe an Dritte oder zum Weiterverkauf bedarf einer gesonderten schriftlichen Vereinbarung.</p>
+      <p>(3) HKS Creations ist berechtigt, die erstellten Arbeiten zu Referenzzwecken (z.B. Portfolio, „Meine Websites") zu verwenden.</p>
+
+      <h3>§ 7 Gewährleistung</h3>
+      <p>(1) HKS Creations gewährleistet die vereinbarte Funktionalität der Leistungen zum Zeitpunkt der Abnahme.</p>
+      <p>(2) Mängel sind unverzüglich schriftlich anzuzeigen. HKS Creations ist berechtigt, festgestellte Mängel innerhalb angemessener Frist nachzubessern.</p>
+      <p>(3) Keine Gewähr wird übernommen für Fehler, die durch nachträgliche Änderungen des Auftraggebers oder Dritter, durch unsachgemäße Nutzung oder durch Änderungen der technischen Rahmenbedingungen (z.B. Browser-Updates, Drittanbieter-APIs) entstehen.</p>
+
+      <h3>§ 8 Haftung</h3>
+      <p>(1) HKS Creations haftet unbeschränkt für Vorsatz und grobe Fahrlässigkeit sowie nach den Vorschriften des Produkthaftungsgesetzes.</p>
+      <p>(2) Für leichte Fahrlässigkeit haftet HKS Creations nur bei Verletzung wesentlicher Vertragspflichten und beschränkt auf den vorhersehbaren, vertragstypischen Schaden.</p>
+      <p>(3) Eine Haftung für Datenverlust ist auf den Wiederherstellungsaufwand beschränkt, der bei ordnungsgemäßer Datensicherung durch den Auftraggeber entstanden wäre.</p>
+
+      <h3>§ 9 Schlussbestimmungen</h3>
+      <p>(1) Es gilt das Recht der Bundesrepublik Deutschland.</p>
+      <p>(2) Erfüllungsort und – soweit gesetzlich zulässig – Gerichtsstand ist der Sitz von HKS Creations.</p>
+      <p>(3) Sollten einzelne Bestimmungen dieser AGB unwirksam sein oder werden, bleibt die Wirksamkeit der übrigen Bestimmungen unberührt.</p>
+
+      <p class="legal-disclaimer"><strong>Hinweis:</strong> Diese AGB sind eine Standardvorlage für Web-Design-Dienstleistungen. Vor verbindlicher Verwendung sollten sie durch einen Rechtsanwalt geprüft und ggf. an den konkreten Geschäftsbetrieb angepasst werden.</p>
+    </div>
+  </div>
 
   <!-- Back to top -->
   <a href="#home" class="back-to-top" id="back-to-top" aria-label="Nach oben">↑</a>
@@ -2107,6 +2446,44 @@
     const mobileMenu=document.getElementById('mobile-menu');
     hamburger.addEventListener('click',()=>{ hamburger.classList.toggle('open'); mobileMenu.classList.toggle('open'); });
     mobileMenu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{ hamburger.classList.remove('open'); mobileMenu.classList.remove('open'); }));
+
+    // Dynamic iframe scaling for website previews
+    const scaleIframes = () => {
+      document.querySelectorAll('.website-iframe-wrap').forEach(wrap => {
+        const scale = wrap.clientWidth / 1440;
+        wrap.querySelectorAll('iframe').forEach(f => { f.style.transform = `scale(${scale})`; });
+      });
+    };
+    scaleIframes();
+    window.addEventListener('resize', scaleIframes);
+
+    /* ── Legal Modals ── */
+    const openLegal = (id) => {
+      const m = document.getElementById(id);
+      if (!m) return;
+      document.querySelectorAll('.legal-modal.is-open').forEach(x => x.classList.remove('is-open'));
+      m.classList.add('is-open');
+      document.body.classList.add('legal-open');
+      m.scrollTop = 0;
+    };
+    const closeLegal = () => {
+      document.querySelectorAll('.legal-modal.is-open').forEach(x => x.classList.remove('is-open'));
+      document.body.classList.remove('legal-open');
+    };
+    document.querySelectorAll('a[href^="#legal-"]').forEach(a => {
+      a.addEventListener('click', e => {
+        e.preventDefault();
+        openLegal(a.getAttribute('href').slice(1));
+      });
+    });
+    document.querySelectorAll('.legal-close, .legal-backdrop').forEach(el => {
+      el.addEventListener('click', e => { e.preventDefault(); closeLegal(); });
+    });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeLegal();
+    });
+    // Open via initial URL hash (deep link support)
+    if (location.hash.startsWith('#legal-')) openLegal(location.hash.slice(1));
   </script>
 </body>
 </html>
