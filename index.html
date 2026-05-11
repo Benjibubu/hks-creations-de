@@ -1104,6 +1104,44 @@
     .cta-colorful:hover { transform: scale(1.02); }
     .cta-colorful .cta-text { position: relative; z-index: 1; }
 
+    /* ─── Contact map ─────────────────────────────── */
+    .contact-map {
+      margin-top: 48px;
+      padding: 22px;
+      background: #0d0d12;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 18px;
+    }
+    .contact-map-head {
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 12px; margin-bottom: 18px;
+    }
+    .contact-map-title {
+      font-family: 'DM Sans', sans-serif; font-size: 15px;
+      font-weight: 600; color: rgba(255,255,255,0.9);
+      display: flex; align-items: center; gap: 8px;
+    }
+    .contact-map-addr {
+      font-family: 'DM Sans', sans-serif; font-size: 13px;
+      color: rgba(255,255,255,0.5); margin-top: 2px;
+    }
+    .contact-map-link {
+      font-family: 'DM Sans', sans-serif; font-size: 13px;
+      font-weight: 500; color: #00D4FF; text-decoration: none;
+      display: inline-flex; align-items: center; gap: 6px;
+      transition: transform 0.2s;
+    }
+    .contact-map-link:hover { transform: translateX(3px); }
+    .contact-map-frame {
+      position: relative; overflow: hidden; border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.06);
+      aspect-ratio: 16 / 10;
+    }
+    .contact-map-frame iframe {
+      width: 100%; height: 100%; border: 0; display: block;
+      filter: invert(90%) hue-rotate(180deg) saturate(0.7);
+    }
+
     /* ─── Footer ──────────────────────────────────── */
     .site-footer {
       position: relative; z-index: 1;
@@ -2023,6 +2061,23 @@
         <a href="mailto:hks.creationss@gmail.com" class="cta-colorful">
           <span class="cta-text">Kostenlos Kontakt aufnehmen →</span>
         </a>
+
+        <div class="contact-map">
+          <div class="contact-map-head">
+            <div>
+              <div class="contact-map-title">📍 Besuch uns</div>
+              <div class="contact-map-addr">Heinestraße 23, 55430 Urbar</div>
+            </div>
+            <a href="https://www.google.com/maps/search/?api=1&amp;query=HKS+Creations+Heinestra%C3%9Fe+23+55430+Urbar" target="_blank" rel="noopener" class="contact-map-link">In Google Maps öffnen →</a>
+          </div>
+          <div class="contact-map-frame">
+            <iframe
+              src="https://maps.google.com/maps?q=HKS+Creations+Heinestra%C3%9Fe+23+55430+Urbar&amp;z=15&amp;output=embed"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title="HKS Creations auf Google Maps"></iframe>
+          </div>
+        </div>
       </div>
     </section>
   </main>
