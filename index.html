@@ -851,6 +851,154 @@
       .pricing-payment-col:last-child { padding-left: 0; }
     }
 
+    /* ─── Reviews ─────────────────────────────────── */
+    .reviews-section {
+      position: relative; z-index: 1;
+      background: #06060a;
+      padding: clamp(80px,10vw,140px) clamp(24px,8vw,120px);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      overflow: hidden;
+    }
+    .reviews-header { margin-bottom: clamp(40px,5vw,60px); }
+    .reviews-label {
+      font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.2em;
+      text-transform:uppercase; color:#00D4FF; margin-bottom:18px;
+    }
+    .reviews-h2 {
+      font-family:'Syne',sans-serif; font-weight:800;
+      font-size:clamp(38px,5.6vw,76px); line-height:1.0; letter-spacing:-0.02em;
+      color:#fff; margin-bottom:22px;
+    }
+    .reviews-sub {
+      font-family:'DM Sans',sans-serif; font-size:clamp(16px,1.4vw,18px);
+      line-height:1.55; color:rgba(255,255,255,0.6); max-width:620px;
+    }
+    .reviews-meta {
+      display:flex; align-items:center; gap:14px; flex-wrap:wrap; margin-top:26px;
+      font-family:'DM Sans',sans-serif;
+    }
+    .reviews-meta-rating {
+      display:flex; align-items:center; gap:10px;
+      padding:10px 16px;
+      background: rgba(255,255,255,0.04);
+      border:1px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
+    }
+    .reviews-meta-stars { color:#FFB800; letter-spacing:2px; font-size:16px; }
+    .reviews-meta-score { font-weight:600; color:#fff; font-size:15px; }
+    .reviews-meta-count { color:rgba(255,255,255,0.55); font-size:14px; }
+    .reviews-meta a {
+      color: rgba(255,255,255,0.55); text-decoration:none; font-size:14px;
+      transition: color 0.2s;
+    }
+    .reviews-meta a:hover { color:#00D4FF; }
+
+    .reviews-stage {
+      position: relative;
+      max-width: 760px;
+      margin: 0 auto;
+      cursor: grab;
+      user-select: none;
+    }
+    .reviews-stage:active { cursor: grabbing; }
+    .reviews-track {
+      display: flex;
+      transition: transform 0.55s cubic-bezier(0.22,0.61,0.36,1);
+      will-change: transform;
+    }
+    .review-card {
+      flex: 0 0 100%;
+      box-sizing: border-box;
+      padding: 0 4px;
+    }
+    .review-card-inner {
+      background: linear-gradient(180deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 22px;
+      padding: 40px clamp(28px,4vw,48px) 38px;
+      min-height: 280px;
+      display: flex; flex-direction: column;
+      position: relative;
+      overflow: hidden;
+    }
+    .review-card-inner::after {
+      content: '"';
+      position: absolute;
+      top: 8px; right: 28px;
+      font-family: 'Syne', serif;
+      font-size: 140px; line-height: 1;
+      color: rgba(0,212,255,0.12);
+      pointer-events: none;
+    }
+    .review-stars {
+      color:#FFB800; letter-spacing:3px; font-size:18px;
+      margin-bottom:18px;
+    }
+    .review-text {
+      font-family:'DM Sans',sans-serif;
+      font-size: clamp(17px, 1.8vw, 21px);
+      line-height: 1.55;
+      color: rgba(255,255,255,0.92);
+      margin-bottom: 28px;
+      flex: 1;
+    }
+    .review-bottom {
+      display: flex; align-items: center; gap: 14px;
+      padding-top: 22px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .review-avatar {
+      width:46px; height:46px; border-radius:50%;
+      display:flex; align-items:center; justify-content:center;
+      font-family:'DM Sans',sans-serif; font-weight:700; font-size:17px;
+      color:#fff; flex-shrink:0;
+    }
+    .review-name {
+      font-family:'DM Sans',sans-serif; font-weight:600; font-size:15px;
+      color:#fff; line-height:1.2;
+    }
+    .review-source {
+      font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.08em;
+      text-transform:uppercase; color:rgba(255,255,255,0.45);
+      margin-top:4px;
+    }
+
+    .reviews-controls {
+      display:flex; align-items:center; justify-content:center;
+      gap: 22px;
+      margin-top: 32px;
+    }
+    .reviews-dots { display:flex; gap:8px; align-items:center; }
+    .reviews-dot {
+      width:8px; height:8px; border-radius:50%;
+      background: rgba(255,255,255,0.2);
+      border:none; padding:0; cursor:pointer;
+      transition: background 0.2s, width 0.3s;
+    }
+    .reviews-dot.active { background:#00D4FF; width: 24px; border-radius: 4px; }
+    .reviews-dot:hover { background: rgba(0,212,255,0.6); }
+    .reviews-arrow {
+      width:46px; height:46px; border-radius:50%;
+      border:1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.03);
+      color:#fff; cursor:pointer;
+      display:flex; align-items:center; justify-content:center;
+      transition: all 0.2s;
+      font-size: 20px; line-height: 1;
+    }
+    .reviews-arrow:hover {
+      border-color:#00D4FF; background:rgba(0,212,255,0.08); color:#00D4FF;
+    }
+    .reviews-hint {
+      text-align:center; margin-top:18px;
+      font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.15em;
+      text-transform:uppercase; color:rgba(255,255,255,0.35);
+    }
+    @media (max-width: 700px) {
+      .review-card-inner { padding: 32px 24px 28px; min-height: 260px; }
+      .review-card-inner::after { font-size: 100px; top: 4px; right: 16px; }
+    }
+
     /* ─── FAQ ────────────────────────────────────── */
     .faq-section {
       position: relative; z-index: 1;
@@ -954,8 +1102,11 @@
     }
     .websites-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       gap: 24px;
+    }
+    @media (max-width: 1100px) {
+      .websites-grid { grid-template-columns: repeat(2, 1fr); }
     }
     .website-card {
       border-radius: 16px; overflow: hidden;
@@ -1104,42 +1255,52 @@
     .cta-colorful:hover { transform: scale(1.02); }
     .cta-colorful .cta-text { position: relative; z-index: 1; }
 
-    /* ─── Contact map ─────────────────────────────── */
+    /* ─── Contact map (full-width) ─────────────────── */
     .contact-map {
-      margin-top: 48px;
+      margin-top: clamp(56px, 7vw, 88px);
       padding: 22px;
       background: #0d0d12;
       border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 18px;
+      border-radius: 22px;
+      width: 100%;
     }
     .contact-map-head {
       display: flex; align-items: center; justify-content: space-between;
       flex-wrap: wrap; gap: 12px; margin-bottom: 18px;
+      padding: 0 6px;
     }
     .contact-map-title {
-      font-family: 'DM Sans', sans-serif; font-size: 15px;
-      font-weight: 600; color: rgba(255,255,255,0.9);
+      font-family: 'DM Sans', sans-serif; font-size: 17px;
+      font-weight: 600; color: rgba(255,255,255,0.95);
       display: flex; align-items: center; gap: 8px;
     }
     .contact-map-addr {
-      font-family: 'DM Sans', sans-serif; font-size: 13px;
-      color: rgba(255,255,255,0.5); margin-top: 2px;
+      font-family: 'DM Sans', sans-serif; font-size: 14px;
+      color: rgba(255,255,255,0.55); margin-top: 3px;
     }
     .contact-map-link {
-      font-family: 'DM Sans', sans-serif; font-size: 13px;
+      font-family: 'DM Sans', sans-serif; font-size: 14px;
       font-weight: 500; color: #00D4FF; text-decoration: none;
       display: inline-flex; align-items: center; gap: 6px;
-      transition: transform 0.2s;
+      padding: 9px 16px;
+      border: 1px solid rgba(0,212,255,0.25);
+      border-radius: 10px;
+      background: rgba(0,212,255,0.06);
+      transition: gap 0.2s, color 0.2s, background 0.2s;
     }
-    .contact-map-link:hover { transform: translateX(3px); }
+    .contact-map-link:hover { gap: 10px; color: #fff; background: rgba(0,212,255,0.12); }
     .contact-map-frame {
-      position: relative; overflow: hidden; border-radius: 12px;
+      position: relative; overflow: hidden; border-radius: 14px;
       border: 1px solid rgba(255,255,255,0.06);
-      aspect-ratio: 16 / 10;
+      height: clamp(420px, 55vh, 620px);
     }
     .contact-map-frame iframe {
       width: 100%; height: 100%; border: 0; display: block;
       filter: invert(90%) hue-rotate(180deg) saturate(0.7);
+    }
+    @media (max-width: 700px) {
+      .contact-map { padding: 14px; }
+      .contact-map-frame { height: 380px; }
     }
 
     /* ─── Footer ──────────────────────────────────── */
@@ -1538,7 +1699,7 @@
         </p>
         <div class="hero-buttons">
           <a href="#contact" class="btn-primary">Kostenlose Erstberatung →</a>
-          <a href="#offer" class="btn-secondary">Unsere Arbeit ansehen</a>
+          <a href="#websites" class="btn-secondary">Unsere Arbeit ansehen</a>
         </div>
       </div>
     </section>
@@ -1574,6 +1735,145 @@
           <span>📍</span>
           <span>Websites für Unternehmen entlang des Rheins</span>
         </div>
+      </div>
+    </section>
+
+    <!-- Meine Websites -->
+    <section class="websites-section" id="websites">
+      <div class="offer-header">
+        <p class="offer-label">Unsere Arbeit</p>
+        <h2 class="offer-h2">Meine Websites.</h2>
+        <p class="offer-sub">Echte Projekte, echte Ergebnisse. Jede Website ist handgecoded – kein Template, kein Baukastendingens, kein Overhead.</p>
+      </div>
+
+      <div class="websites-grid">
+
+        <!-- BH Performance -->
+        <div class="website-card">
+          <div class="browser-chrome">
+            <div class="browser-dots"><span></span><span></span><span></span></div>
+            <div class="browser-url">bh-performance.de</div>
+          </div>
+          <div class="website-iframe-wrap">
+            <img src="./bh-performance-preview.png" alt="BH Performance Vorschau" class="website-preview-img" loading="lazy">
+          </div>
+          <div class="website-card-footer">
+            <div>
+              <div class="card-style-label">BH Performance</div>
+              <div class="card-style-desc">Elite-Athletentraining – kraftvoll, fokussiert, kompromisslos auf Ergebnisse.</div>
+            </div>
+            <a href="https://bh-performance.de" target="_blank" rel="noopener" class="website-visit-btn">
+              Website besuchen
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- RHS Immobilien -->
+        <div class="website-card">
+          <div class="browser-chrome">
+            <div class="browser-dots"><span></span><span></span><span></span></div>
+            <div class="browser-url">rhs-immobilien.vercel.app</div>
+          </div>
+          <div class="website-iframe-wrap">
+            <iframe src="https://rhs-immobilien.vercel.app" scrolling="no" loading="lazy" title="RHS Immobilien" tabindex="-1"></iframe>
+          </div>
+          <div class="website-card-footer">
+            <div>
+              <div class="card-style-label">RHS Immobilien</div>
+              <div class="card-style-desc">Premium-Immobilienberatung – klare Struktur, starkes Vertrauen, moderner Auftritt.</div>
+            </div>
+            <a href="https://rhs-immobilien.vercel.app" target="_blank" rel="noopener" class="website-visit-btn">
+              Website besuchen
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Veranstaltungstechnik Prath -->
+        <div class="website-card">
+          <div class="browser-chrome">
+            <div class="browser-dots"><span></span><span></span><span></span></div>
+            <div class="browser-url">veranstaltungstechnik-prath.de</div>
+          </div>
+          <div class="website-iframe-wrap">
+            <iframe src="https://veranstaltungstechnik-prath.de" scrolling="no" loading="lazy" title="Veranstaltungstechnik Prath" tabindex="-1"></iframe>
+          </div>
+          <div class="website-card-footer">
+            <div>
+              <div class="card-style-label">Veranstaltungstechnik Prath</div>
+              <div class="card-style-desc">Ton, Licht &amp; Bühne – kraftvolle Onlinepräsenz für unvergessliche Events.</div>
+            </div>
+            <a href="https://veranstaltungstechnik-prath.de" target="_blank" rel="noopener" class="website-visit-btn">
+              Website besuchen
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Systemcut Koblenz -->
+        <div class="website-card">
+          <div class="browser-chrome">
+            <div class="browser-dots"><span></span><span></span><span></span></div>
+            <div class="browser-url">systemcut-koblenz.vercel.app</div>
+          </div>
+          <div class="website-iframe-wrap">
+            <iframe src="https://systemcut-koblenz.vercel.app" scrolling="no" loading="lazy" title="Systemcut Koblenz" tabindex="-1"></iframe>
+          </div>
+          <div class="website-card-footer">
+            <div>
+              <div class="card-style-label">Systemcut Koblenz</div>
+              <div class="card-style-desc">Barbershop &amp; Friseur – frischer Look, starke Onlinepräsenz.</div>
+            </div>
+            <a href="https://systemcut-koblenz.vercel.app" target="_blank" rel="noopener" class="website-visit-btn">
+              Website besuchen
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Mental Fanty -->
+        <div class="website-card">
+          <div class="browser-chrome">
+            <div class="browser-dots"><span></span><span></span><span></span></div>
+            <div class="browser-url">mental-fanty.vercel.app</div>
+          </div>
+          <div class="website-iframe-wrap">
+            <img src="./mental-fanty-preview.png" alt="Mental Fanty Vorschau" class="website-preview-img" loading="lazy">
+          </div>
+          <div class="website-card-footer">
+            <div>
+              <div class="card-style-label">Mental Fanty</div>
+              <div class="card-style-desc">Spirituelle Begleitung für Transformation, inneres Wachstum &amp; Klarheit.</div>
+            </div>
+            <a href="https://mental-fanty.vercel.app" target="_blank" rel="noopener" class="website-visit-btn">
+              Website besuchen
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Küchenfuchs -->
+        <div class="website-card">
+          <div class="browser-chrome">
+            <div class="browser-dots"><span></span><span></span><span></span></div>
+            <div class="browser-url">kuechenfuchs.vercel.app</div>
+          </div>
+          <div class="website-iframe-wrap">
+            <iframe src="https://kuechenfuchs.vercel.app" scrolling="no" loading="lazy" title="Küchenfuchs" tabindex="-1"></iframe>
+          </div>
+          <div class="website-card-footer">
+            <div>
+              <div class="card-style-label">Küchenfuchs</div>
+              <div class="card-style-desc">Küchen &amp; Einrichtung – warm, einladend, mit echtem Charakter.</div>
+            </div>
+            <a href="https://kuechenfuchs.vercel.app" target="_blank" rel="noopener" class="website-visit-btn">
+              Website besuchen
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+            </a>
+          </div>
+        </div>
+
       </div>
     </section>
 
@@ -1748,124 +2048,6 @@
       </div>
     </section>
 
-    <!-- Meine Websites -->
-    <section class="websites-section" id="websites">
-      <div class="offer-header">
-        <p class="offer-label">Unsere Arbeit</p>
-        <h2 class="offer-h2">Meine Websites.</h2>
-        <p class="offer-sub">Echte Projekte, echte Ergebnisse. Jede Website ist handgecoded – kein Template, kein Baukastendingens, kein Overhead.</p>
-      </div>
-
-      <div class="websites-grid">
-
-        <!-- BH Performance -->
-        <div class="website-card">
-          <div class="browser-chrome">
-            <div class="browser-dots"><span></span><span></span><span></span></div>
-            <div class="browser-url">bh-performance-website.vercel.app</div>
-          </div>
-          <div class="website-iframe-wrap">
-            <img src="./bh-performance-preview.png" alt="BH Performance Vorschau" class="website-preview-img" loading="lazy">
-          </div>
-          <div class="website-card-footer">
-            <div>
-              <div class="card-style-label">BH Performance</div>
-              <div class="card-style-desc">Elite-Athletentraining – kraftvoll, fokussiert, kompromisslos auf Ergebnisse.</div>
-            </div>
-            <a href="https://bh-performance-website.vercel.app" target="_blank" rel="noopener" class="website-visit-btn">
-              Website besuchen
-              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
-            </a>
-          </div>
-        </div>
-
-        <!-- RHS Immobilien -->
-        <div class="website-card">
-          <div class="browser-chrome">
-            <div class="browser-dots"><span></span><span></span><span></span></div>
-            <div class="browser-url">rhs-immobilien.vercel.app</div>
-          </div>
-          <div class="website-iframe-wrap">
-            <iframe src="https://rhs-immobilien.vercel.app" scrolling="no" loading="lazy" title="RHS Immobilien" tabindex="-1"></iframe>
-          </div>
-          <div class="website-card-footer">
-            <div>
-              <div class="card-style-label">RHS Immobilien</div>
-              <div class="card-style-desc">Premium-Immobilienberatung – klare Struktur, starkes Vertrauen, moderner Auftritt.</div>
-            </div>
-            <a href="https://rhs-immobilien.vercel.app" target="_blank" rel="noopener" class="website-visit-btn">
-              Website besuchen
-              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
-            </a>
-          </div>
-        </div>
-
-        <!-- Küchenfuchs -->
-        <div class="website-card">
-          <div class="browser-chrome">
-            <div class="browser-dots"><span></span><span></span><span></span></div>
-            <div class="browser-url">kuechenfuchs.vercel.app</div>
-          </div>
-          <div class="website-iframe-wrap">
-            <iframe src="https://kuechenfuchs.vercel.app" scrolling="no" loading="lazy" title="Küchenfuchs" tabindex="-1"></iframe>
-          </div>
-          <div class="website-card-footer">
-            <div>
-              <div class="card-style-label">Küchenfuchs</div>
-              <div class="card-style-desc">Küchen &amp; Einrichtung – warm, einladend, mit echtem Charakter.</div>
-            </div>
-            <a href="https://kuechenfuchs.vercel.app" target="_blank" rel="noopener" class="website-visit-btn">
-              Website besuchen
-              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
-            </a>
-          </div>
-        </div>
-
-        <!-- Mental Fanty -->
-        <div class="website-card">
-          <div class="browser-chrome">
-            <div class="browser-dots"><span></span><span></span><span></span></div>
-            <div class="browser-url">mental-fanty.vercel.app</div>
-          </div>
-          <div class="website-iframe-wrap">
-            <img src="./mental-fanty-preview.png" alt="Mental Fanty Vorschau" class="website-preview-img" loading="lazy">
-          </div>
-          <div class="website-card-footer">
-            <div>
-              <div class="card-style-label">Mental Fanty</div>
-              <div class="card-style-desc">Spirituelle Begleitung für Transformation, inneres Wachstum &amp; Klarheit.</div>
-            </div>
-            <a href="https://mental-fanty.vercel.app" target="_blank" rel="noopener" class="website-visit-btn">
-              Website besuchen
-              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
-            </a>
-          </div>
-        </div>
-
-        <!-- Systemcut Koblenz -->
-        <div class="website-card">
-          <div class="browser-chrome">
-            <div class="browser-dots"><span></span><span></span><span></span></div>
-            <div class="browser-url">systemcut-koblenz.vercel.app</div>
-          </div>
-          <div class="website-iframe-wrap">
-            <iframe src="https://systemcut-koblenz.vercel.app" scrolling="no" loading="lazy" title="Systemcut Koblenz" tabindex="-1"></iframe>
-          </div>
-          <div class="website-card-footer">
-            <div>
-              <div class="card-style-label">Systemcut Koblenz</div>
-              <div class="card-style-desc">Barbershop &amp; Friseur – frischer Look, starke Onlinepräsenz.</div>
-            </div>
-            <a href="https://systemcut-koblenz.vercel.app" target="_blank" rel="noopener" class="website-visit-btn">
-              Website besuchen
-              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
-            </a>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
     <!-- How It Works -->
     <section class="hiw-section" id="how">
       <div class="hiw-header">
@@ -1965,6 +2147,88 @@
       </div>
     </section>
 
+    <!-- Reviews -->
+    <section class="reviews-section" id="reviews">
+      <div class="reviews-header">
+        <p class="reviews-label">Stimmen unserer Kunden</p>
+        <h2 class="reviews-h2">Was Kunden über uns sagen.</h2>
+        <p class="reviews-sub">Echte Bewertungen von echten Kunden. Keine Inszenierung, keine gekauften Sterne – einfach das, was Menschen wirklich denken.</p>
+        <div class="reviews-meta">
+          <div class="reviews-meta-rating">
+            <span class="reviews-meta-stars">★★★★★</span>
+            <span class="reviews-meta-score">5,0</span>
+            <span class="reviews-meta-count">· 6 Google-Rezensionen</span>
+          </div>
+          <a href="https://www.google.com/search?q=HKS+Creations+Rezensionen" target="_blank" rel="noopener">Auf Google ansehen →</a>
+        </div>
+      </div>
+
+      <div class="reviews-stage" id="reviewsStage">
+        <div class="reviews-track" id="reviewsTrack">
+          <div class="review-card"><div class="review-card-inner">
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">Haben mir eine Website für meine Sport-Performance-Firma erstellt. Habe 80 Euro bezahlt und die Website nach zwei Tagen mit Custom-Domain bekommen.</p>
+            <div class="review-bottom">
+              <div class="review-avatar" style="background:linear-gradient(135deg,#a3e635,#65a30d);">B</div>
+              <div><div class="review-name">BH Performance</div><div class="review-source">Google · vor 2 Tagen</div></div>
+            </div>
+          </div></div>
+
+          <div class="review-card"><div class="review-card-inner">
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">Die Erstellung meiner Webseite war einfach hervorragend. Professionell, schnell und dabei immer freundlich im Kontakt. Alle Wünsche wurden kompetent umgesetzt.</p>
+            <div class="review-bottom">
+              <div class="review-avatar" style="background:linear-gradient(135deg,#a78bfa,#7c3aed);">M</div>
+              <div><div class="review-name">Mental Fanty</div><div class="review-source">Google · vor 2 Tagen</div></div>
+            </div>
+          </div></div>
+
+          <div class="review-card"><div class="review-card-inner">
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">Sehr guter Service! Preise absoluter Schnapper, es gibt nichts zu bemängeln 💯💯</p>
+            <div class="review-bottom">
+              <div class="review-avatar" style="background:linear-gradient(135deg,#60a5fa,#2563eb);">A</div>
+              <div><div class="review-name">Arne Link</div><div class="review-source">Google · vor 2 Tagen</div></div>
+            </div>
+          </div></div>
+
+          <div class="review-card"><div class="review-card-inner">
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">Top Service auf hohem Niveau. Jederzeit wieder 👍</p>
+            <div class="review-bottom">
+              <div class="review-avatar" style="background:linear-gradient(135deg,#fb923c,#ea580c);">C</div>
+              <div><div class="review-name">Christian Arndt</div><div class="review-source">Google · vor 2 Tagen</div></div>
+            </div>
+          </div></div>
+
+          <div class="review-card"><div class="review-card-inner">
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">Super Website. Extrem schneller Service.</p>
+            <div class="review-bottom">
+              <div class="review-avatar" style="background:linear-gradient(135deg,#f472b6,#db2777);">J</div>
+              <div><div class="review-name">Julius Müller</div><div class="review-source">Google · vor 2 Tagen</div></div>
+            </div>
+          </div></div>
+
+          <div class="review-card"><div class="review-card-inner">
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">Sehr zuverlässig, tolle Ideen und Umsetzung! Absolut fairer Preis!</p>
+            <div class="review-bottom">
+              <div class="review-avatar" style="background:linear-gradient(135deg,#22d3ee,#0891b2);">J</div>
+              <div><div class="review-name">Julia H.</div><div class="review-source">Google · vor 4 Tagen</div></div>
+            </div>
+          </div></div>
+        </div>
+      </div>
+
+      <div class="reviews-controls">
+        <button class="reviews-arrow" id="reviewsPrev" aria-label="Vorherige Bewertung">←</button>
+        <div class="reviews-dots" id="reviewsDots"></div>
+        <button class="reviews-arrow" id="reviewsNext" aria-label="Nächste Bewertung">→</button>
+      </div>
+      <p class="reviews-hint">← Wischen oder Pfeile · Auto-Wechsel alle 6 Sek.</p>
+    </section>
+
     <!-- FAQ -->
     <section class="faq-section" id="faq">
       <div class="faq-header">
@@ -2061,22 +2325,22 @@
         <a href="mailto:hks.creationss@gmail.com" class="cta-colorful">
           <span class="cta-text">Kostenlos Kontakt aufnehmen →</span>
         </a>
+      </div>
 
-        <div class="contact-map">
-          <div class="contact-map-head">
-            <div>
-              <div class="contact-map-title">📍 Besuch uns</div>
-              <div class="contact-map-addr">Heinestraße 23, 55430 Urbar</div>
-            </div>
-            <a href="https://www.google.com/maps/search/?api=1&amp;query=HKS+Creations+Heinestra%C3%9Fe+23+55430+Urbar" target="_blank" rel="noopener" class="contact-map-link">In Google Maps öffnen →</a>
+      <div class="contact-map">
+        <div class="contact-map-head">
+          <div>
+            <div class="contact-map-title">📍 Besuch uns</div>
+            <div class="contact-map-addr">Heinestraße 23, 55430 Urbar · bei Koblenz</div>
           </div>
-          <div class="contact-map-frame">
-            <iframe
-              src="https://maps.google.com/maps?q=HKS+Creations+Heinestra%C3%9Fe+23+55430+Urbar&amp;z=15&amp;output=embed"
-              loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade"
-              title="HKS Creations auf Google Maps"></iframe>
-          </div>
+          <a href="https://www.google.com/maps/search/?api=1&amp;query=HKS+Creations+Heinestra%C3%9Fe+23+55430+Urbar" target="_blank" rel="noopener" class="contact-map-link">In Google Maps öffnen →</a>
+        </div>
+        <div class="contact-map-frame">
+          <iframe
+            src="https://maps.google.com/maps?q=HKS+Creations+Heinestra%C3%9Fe+23+55430+Urbar&amp;z=13&amp;output=embed"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="HKS Creations auf Google Maps – Standort Urbar bei Koblenz"></iframe>
         </div>
       </div>
     </section>
@@ -2492,9 +2756,10 @@
           if(e.isIntersecting){ e.target.classList.add('visible'); observer.unobserve(e.target); }
         });
       }, { threshold: 0.12 });
-      ['.offer-header','.cards-grid','.hiw-header','.hiw-grid',
+      ['.offer-header','.cards-grid','.websites-grid','.hiw-header','.hiw-grid',
        '.pricing-header','.pricing-cards','.pricing-payment-box',
-       '.faq-header','.faq-list','.contact-inner','.site-footer'
+       '.reviews-header','.reviews-stage','.reviews-controls',
+       '.faq-header','.faq-list','.contact-inner','.contact-map','.site-footer'
       ].forEach(sel => {
         document.querySelectorAll(sel).forEach(el => {
           el.classList.add('reveal');
@@ -2537,6 +2802,71 @@
     mobileMenu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{ hamburger.classList.remove('open'); mobileMenu.classList.remove('open'); }));
 
     // Dynamic iframe scaling for website previews
+    // ── Reviews slider (1-at-a-time, swipe + autoplay) ──
+    (function(){
+      const stage = document.getElementById('reviewsStage');
+      const track = document.getElementById('reviewsTrack');
+      const dotsHost = document.getElementById('reviewsDots');
+      const prev = document.getElementById('reviewsPrev');
+      const next = document.getElementById('reviewsNext');
+      if(!stage || !track) return;
+      const total = track.children.length;
+      let idx = 0;
+      let timer = null;
+
+      // dots
+      for(let i=0;i<total;i++){
+        const b = document.createElement('button');
+        b.className = 'reviews-dot' + (i===0?' active':'');
+        b.setAttribute('aria-label','Bewertung '+(i+1));
+        b.addEventListener('click', ()=>{ idx=i; render(); restart(); });
+        dotsHost.appendChild(b);
+      }
+
+      function render(){
+        track.style.transform = `translateX(${-idx*100}%)`;
+        Array.from(dotsHost.children).forEach((d,i)=>d.classList.toggle('active', i===idx));
+      }
+      function step(d){ idx = (idx + d + total) % total; render(); }
+      function autoplay(){ timer = setInterval(()=>step(1), 6000); }
+      function restart(){ clearInterval(timer); autoplay(); }
+
+      prev.addEventListener('click', ()=>{ step(-1); restart(); });
+      next.addEventListener('click', ()=>{ step(1); restart(); });
+      stage.addEventListener('mouseenter', ()=>clearInterval(timer));
+      stage.addEventListener('mouseleave', autoplay);
+
+      // touch / drag
+      let startX=0, dragging=false, dx=0;
+      stage.addEventListener('pointerdown', e=>{
+        dragging=true; startX=e.clientX; dx=0;
+        track.style.transition='none';
+        try{ stage.setPointerCapture(e.pointerId); }catch(_){}
+        clearInterval(timer);
+      });
+      stage.addEventListener('pointermove', e=>{
+        if(!dragging) return;
+        dx = e.clientX - startX;
+        const w = stage.clientWidth;
+        track.style.transform = `translateX(calc(${-idx*100}% + ${dx}px))`;
+      });
+      function endDrag(){
+        if(!dragging) return;
+        dragging=false;
+        track.style.transition='';
+        const w = stage.clientWidth;
+        if(Math.abs(dx) > w*0.18){ step(dx<0?1:-1); }
+        else { render(); }
+        restart();
+      }
+      stage.addEventListener('pointerup', endDrag);
+      stage.addEventListener('pointercancel', endDrag);
+      stage.addEventListener('pointerleave', endDrag);
+
+      render();
+      autoplay();
+    })();
+
     const scaleIframes = () => {
       document.querySelectorAll('.website-iframe-wrap').forEach(wrap => {
         const scale = wrap.clientWidth / 1440;
