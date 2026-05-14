@@ -895,21 +895,31 @@
 
     .reviews-stage {
       position: relative;
-      max-width: 760px;
-      margin: 0 auto;
-      cursor: grab;
+      width: 100%;
+      overflow: hidden;
       user-select: none;
+      /* fade edges so cards softly enter/exit */
+      -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 6%, #000 94%, transparent 100%);
+              mask-image: linear-gradient(90deg, transparent 0, #000 6%, #000 94%, transparent 100%);
     }
-    .reviews-stage:active { cursor: grabbing; }
     .reviews-track {
       display: flex;
-      transition: transform 0.55s cubic-bezier(0.22,0.61,0.36,1);
+      gap: 22px;
+      width: max-content;
+      animation: reviewsMarquee 55s linear infinite;
       will-change: transform;
     }
+    .reviews-stage:hover .reviews-track { animation-play-state: paused; }
+    @keyframes reviewsMarquee {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .reviews-track { animation: none; }
+    }
     .review-card {
-      flex: 0 0 100%;
+      flex: 0 0 clamp(300px, 28vw, 420px);
       box-sizing: border-box;
-      padding: 0 4px;
     }
     .review-card-inner {
       background: linear-gradient(180deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%);
@@ -2221,12 +2231,7 @@
         </div>
       </div>
 
-      <div class="reviews-controls">
-        <button class="reviews-arrow" id="reviewsPrev" aria-label="Vorherige Bewertung">←</button>
-        <div class="reviews-dots" id="reviewsDots"></div>
-        <button class="reviews-arrow" id="reviewsNext" aria-label="Nächste Bewertung">→</button>
-      </div>
-      <p class="reviews-hint">← Wischen oder Pfeile · Auto-Wechsel alle 6 Sek.</p>
+      <p class="reviews-hint">Hover zum Pausieren</p>
     </section>
 
     <!-- FAQ -->
@@ -2802,69 +2807,13 @@
     mobileMenu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{ hamburger.classList.remove('open'); mobileMenu.classList.remove('open'); }));
 
     // Dynamic iframe scaling for website previews
-    // ── Reviews slider (1-at-a-time, swipe + autoplay) ──
+    // ── Reviews marquee (endloses Auto-Scrollen, Pause bei Hover) ──
     (function(){
-      const stage = document.getElementById('reviewsStage');
       const track = document.getElementById('reviewsTrack');
-      const dotsHost = document.getElementById('reviewsDots');
-      const prev = document.getElementById('reviewsPrev');
-      const next = document.getElementById('reviewsNext');
-      if(!stage || !track) return;
-      const total = track.children.length;
-      let idx = 0;
-      let timer = null;
-
-      // dots
-      for(let i=0;i<total;i++){
-        const b = document.createElement('button');
-        b.className = 'reviews-dot' + (i===0?' active':'');
-        b.setAttribute('aria-label','Bewertung '+(i+1));
-        b.addEventListener('click', ()=>{ idx=i; render(); restart(); });
-        dotsHost.appendChild(b);
-      }
-
-      function render(){
-        track.style.transform = `translateX(${-idx*100}%)`;
-        Array.from(dotsHost.children).forEach((d,i)=>d.classList.toggle('active', i===idx));
-      }
-      function step(d){ idx = (idx + d + total) % total; render(); }
-      function autoplay(){ timer = setInterval(()=>step(1), 6000); }
-      function restart(){ clearInterval(timer); autoplay(); }
-
-      prev.addEventListener('click', ()=>{ step(-1); restart(); });
-      next.addEventListener('click', ()=>{ step(1); restart(); });
-      stage.addEventListener('mouseenter', ()=>clearInterval(timer));
-      stage.addEventListener('mouseleave', autoplay);
-
-      // touch / drag
-      let startX=0, dragging=false, dx=0;
-      stage.addEventListener('pointerdown', e=>{
-        dragging=true; startX=e.clientX; dx=0;
-        track.style.transition='none';
-        try{ stage.setPointerCapture(e.pointerId); }catch(_){}
-        clearInterval(timer);
-      });
-      stage.addEventListener('pointermove', e=>{
-        if(!dragging) return;
-        dx = e.clientX - startX;
-        const w = stage.clientWidth;
-        track.style.transform = `translateX(calc(${-idx*100}% + ${dx}px))`;
-      });
-      function endDrag(){
-        if(!dragging) return;
-        dragging=false;
-        track.style.transition='';
-        const w = stage.clientWidth;
-        if(Math.abs(dx) > w*0.18){ step(dx<0?1:-1); }
-        else { render(); }
-        restart();
-      }
-      stage.addEventListener('pointerup', endDrag);
-      stage.addEventListener('pointercancel', endDrag);
-      stage.addEventListener('pointerleave', endDrag);
-
-      render();
-      autoplay();
+      if(!track) return;
+      // Karten duplizieren für nahtloses Looping (CSS animiert auf -50%)
+      const originals = Array.from(track.children);
+      originals.forEach(card => track.appendChild(card.cloneNode(true)));
     })();
 
     const scaleIframes = () => {
